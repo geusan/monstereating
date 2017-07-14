@@ -84,7 +84,7 @@ C9(Ubuntu 16.04 기준) -
 ## 여기부터 진짜
     0. 이것만 따라하면 된다.
     
-    git clone https://github.com/geusan/react_base.git
+    git clone https://github.com/geusan/monstereating.git
     
     # package.json 설정
     sudo npm install
