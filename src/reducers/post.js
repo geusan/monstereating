@@ -4,11 +4,13 @@ import update from 'react-addons-update';
 const initialState = {
     post: {
         status: 'INIT',
-        error: -1
+        error: -1,
+        success: false
     },
     get: {
         status: 'INIT',
-        error: -1
+        error: -1,
+        success: false
     },
     list: {
         status: 'INIT',
@@ -25,20 +27,21 @@ export default function post(state, action) {
     switch(action.type){
         case types.POST_CREATE:
             return update(state, {
-                post: {
+                list: {
                     status: { $set: 'WAITING' },
                     error: { $set: -1 }
                 }
             });
         case types.POST_CREATE_SUCCESS:
             return update(state, {
-                post: {
-                    status: { $set: 'SUCCESS' }
+                list: {
+                    status: { $set: 'SUCCESS' },
+                    data: { $set: action.data }
                 }
             });
         case types.POST_CREATE_FAILURE:
             return update(state,{
-                post: {
+                list: {
                     status: { $set: 'FAILURE' },
                     error: { $set: action.error }
                 }
@@ -68,40 +71,42 @@ export default function post(state, action) {
             
         case types.POST_UPDATE:
             return update(state, {
-                post: {
+                list: {
                     status: { $set: 'WAITING' },
                     error: { $set: -1 }
                 }
             });
         case types.POST_UPDATE_SUCCESS:
             return update(state, {
-                post: {
-                    status: { $set: 'SUCCESS' }
+                list: {
+                    status: { $set: 'SUCCESS' },
+                    data: { $set: action.data }
                 }
             });
         case types.POST_UPDATE_FAILURE:
             return update(state,{
-                post: {
+                list: {
                     status: { $set: 'FAILURE' },
                     error: { $set: action.error }
                 }
             });
         case types.POST_DELETE:
             return update(state, {
-                post: {
+                list: {
                     status: { $set: 'WAITING' },
                     error: { $set: -1 }
                 }
             });
         case types.POST_DELETE_SUCCESS:
             return update(state, {
-                post: {
-                    status: { $set: 'SUCCESS' }
+                list: {
+                    status: { $set: 'SUCCESS' },
+                    data: { $set: action.data }
                 }
             });
         case types.POST_DELETE_FAILURE:
             return update(state,{
-                post: {
+                list: {
                     status: { $set: 'FAILURE' },
                     error: { $set: action.error }
                 }

@@ -1,14 +1,25 @@
 import express from 'express';
 import Post from '../models/post';
+import mongoose from 'mongoose';
 
 const router = express.Router();
 
 //create 글 생성
 router.post('/create', (req,res) => {
     
-    Post.save( err => {
+    console.log('post create : ' + req.body.title + "//" + req.body.content);
+    
+    let post = new Post({
+        title: req.body.title,
+        content: req.body.content
+    });
+    
+    post.save((err,docs) => {
             if(err) throw err;
-            return res.json({ success: true });
+            Post.find().exec((err,docs) => {
+              if(err) throw err;
+              return res.json(docs);
+           });
         });
    
 });
@@ -31,7 +42,8 @@ router.get('/all', (req,res) => {
 
 //update 수정하기
 router.post('/update', (req,res) => {
-   Post.findByIdUpdate(
+    console.log('post update : ' +req.body.id + "//" + req.body.title + "//" + req.body.content);
+   Post.findByIdAndUpdate(
        req.body.id,
        {$set: {
            title: req.body.title,
@@ -40,17 +52,24 @@ router.post('/update', (req,res) => {
        {new: true},
        (err,docs) => {
            if(err) return res.status(500).json({error: err});
-           return res.json({success: true});
+           Post.find().exec((err,docs) => {
+              if(err) throw err;
+              return res.json(docs);
+           });
        }) 
 });
 
 //delete 삭제하기
 router.post('/delete', (req,res) => {
-    Post.findByIdRemove(
+    console.log('post delete : ' + req.body.id + "//");
+    Post.findByIdAndRemove(
         req.body.id,
         (err,docs) => {
             if(err) return res.status(500).json({error:err});
-            return res.json({success:true});
+            Post.find().exec((err,docs) => {
+              if(err) throw err;
+              return res.json(docs);
+           });
         })
 });
 

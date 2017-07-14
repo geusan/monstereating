@@ -17,15 +17,8 @@ class Home extends React.Component {
     componentDidMount(){
         this.props.postReadRequest().then(
             () => {
-               console.log("get post : " + this.props.posts); 
+               console.log("get post : " + this.props.postList + "  state : " + this.props.postReadStatus); 
             });
-    }
-    
-    componentDidUpdate(){
-        if(this.props.pstatus.success){
-            this.props.postReadRequest()
-            this.props.pstatus.success = false;
-        }
     }
     
     createMethod(title, content){
@@ -53,19 +46,28 @@ class Home extends React.Component {
         return (
             <div>
                 <List 
-                posts={this.props.posts} 
-                updateMethod={this.updateMethod} 
-                createMethod={this.createMethod} 
-                deleteMethod={this.deleteMethod} />
+                posts={this.props.postList} 
+                updateMethod={this.props.postUpdateRequest} 
+                createMethod={this.props.postCreateRequest} 
+                deleteMethod={this.props.postDeleteRequest} />
             </div>
         )
     }
 }
 
+Home.PropTypes = {
+    postList: React.PropTypes.array
+}
+
+Home.defaultProps = {
+    postList: []
+}
+
 const mapStateToProps = (state) => {
     return {
-        posts: state.post.list.data,
-        pstatus: state.post.post.status    
+        postList: state.post.list.data,
+        postReadStatus: state.post.list.status,
+        postStatus: state.post.post
     }
 }
 

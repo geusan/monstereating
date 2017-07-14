@@ -43,9 +43,6 @@ module.exports = {
     ],
 
     module: {
-        noParse: [
-          /[\\\/]p\.js$/
-        ],
         loaders: [
             {
                 test: /\.js$/,

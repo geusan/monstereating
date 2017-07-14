@@ -24,13 +24,13 @@ class Item extends React.Component {
     
     handleTitleChange(e){
         this.setState({
-           title: e.target.textContent
+           title: e.target.value
         });
     }
     
     handleContentChange(e){
         this.setState({
-           content: e.target.textContent
+           content: e.target.value
         });
     }
     
@@ -44,6 +44,9 @@ class Item extends React.Component {
                 console.log("update item");
                 this.props.field.content = content;
                 this.props.field.title = title;
+                this.setState({
+                    is_editable: false
+                })
             });
     }
     
@@ -52,7 +55,9 @@ class Item extends React.Component {
         this.props.deleteMethod(id).then(
             () => {
                 console.log("delete item");
-                this.props.unmountMe();        
+                this.setState({
+                    is_editable: false
+                })
             });
     }
     
@@ -62,12 +67,12 @@ class Item extends React.Component {
         const editBox = (
             <div className="card-content row">
                 <div className="input-field">
-                    <input onChange={(e) => this.handleTitleChange(e)} placeholder="title" name="title" id="title" value={this.props.field.title} />
-                    <label htmlFor="title">Title</label>
+                    <input onChange={(e) => this.handleTitleChange(e)} placeholder="title" name="title" id={"title-" + this.props.index} value={this.state.title} />
+                    <label htmlFor={"title-" + this.props.index}>Title</label>
                 </div>
                 <div className="input-field">
-                    <input onChange={(e) => this.handleContentChange(e)} placeholder="content" name="content" id="content" value={this.props.field.content} />
-                    <label htmlFor="title">Title</label>
+                    <textarea className="materialize-textarea" placeholder="content" name="content" id={"content-" + this.props.index} onChange={this.handleContentChange} value={this.state.content}></textarea>
+                    <label htmlFor={"content-" + this.props.index}>Title</label>
                 </div>
             </div>  
         );
@@ -82,8 +87,8 @@ class Item extends React.Component {
         const editBtn = (
             <div className="card-action">
                 <a href="#!" onClick={this.handleEditable}>취소</a>
-                <a href="#!" onClick={this.handleUpdate}>수정</a>
-                <a href="#!" onClick={this.handleDelete}>삭제</a>
+                <a href="#!" data-id={this.props.field._id} onClick={this.handleUpdate}>수정</a>
+                <a href="#!" data-id={this.props.field._id} onClick={this.handleDelete}>삭제</a>
             </div>
         );
             
@@ -94,7 +99,7 @@ class Item extends React.Component {
         );
         
         return (
-            <div className="col s12 m6">
+            <div className="col s12 m4 l3">
                 <div className="card hoverable">
                     {this.state.is_editable ? editBox:normalBox}
                     {this.state.is_editable ? editBtn:normalBtn}
@@ -107,8 +112,7 @@ class Item extends React.Component {
 Item.propTypes = {
     field: React.PropTypes.object,
     updateMethod: React.PropTypes.func,
-    deleteMethod: React.PropTypes.func,
-    unmountMe: React.PropTypes.func
+    deleteMethod: React.PropTypes.func
 }
 
 Item.defaultProps = {
@@ -118,8 +122,7 @@ Item.defaultProps = {
         created: Date.now()
     },
     updateMethod: () => { console.log("updateMethod is not defined")},
-    deleteMethod: () => { console.log("deleteMethod is not defined")},
-    unmountMe: () => { console.log("unmountMe is not defined")}
+    deleteMethod: () => { console.log("deleteMethod is not defined")}
 }
 
 export default Item;

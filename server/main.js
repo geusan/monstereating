@@ -6,6 +6,9 @@ import webpack from 'webpack';
 import mongoose from 'mongoose';//mongodb
 import session from 'express-session'; //세션
 
+import morgan from 'morgan' // HTTP Req Logger
+import bodyParser from 'body-parser' // PARSE HTML BODY
+
 import api from './routes'; // 라우팅
 
 const app = express(); // express app 인스턴스
@@ -15,6 +18,10 @@ db.once('open', () => {console.log('Connected to mongodb server')});
 mongoose.connect('mongodb://localhost/monster'); //monster 데이터베이스로 연결
 const port = 8081;
 const devPort = 8082;
+
+// html logger and bodyparser use
+app.use(morgan('dev'));
+app.use(bodyParser.json());
 
 app.use('/', express.static(path.join(__dirname, './../public')));
 
@@ -28,6 +35,9 @@ app.use(session({
     saveUninitialized: true
 }));
 
+// static file 위치 public 으로 고정
+app.use(express.static('public'));
+
 // 기본 라우팅 위치 public/index.html
 app.get('*', (req,res) => {
     res.sendFile(path.resolve(__dirname, './../public/index.html'));
@@ -39,7 +49,7 @@ app.listen(port, () => {
 
 app.use(function(err, req, res, next) {
   console.error(err.stack);
-  res.status(500).send('Something broke!');
+  res.status(500).send('Something broke!' + err);
 });
 
 

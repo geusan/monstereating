@@ -19,7 +19,7 @@ var Schema = _mongoose2.default.Schema; // model
 
 var Post = new Schema({
     title: String,
-    contents: String,
+    content: String,
     created: { type: Date, default: Date.now }
 });
 

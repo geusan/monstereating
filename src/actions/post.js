@@ -20,11 +20,15 @@ export function postCreateRequest(title, content){
     return (dispatch) => {
         dispatch(postCreate());
         
-        return axios.post('/api/post/create', {title, content})
+        let url = "/api/post/create";
+        console.log("postCreateRequest : " + url + "//" + title + "//" + content);
+        
+        return axios.post(url, {title, content})
         .then((res) => {
-            dispatch(postCreateSuccess());
+            dispatch(postCreateSuccess(res.data));
+            console.log("postCreateResponse" + res);
         }).catch((err) => {
-            dispatch(postCreateFailure(err.response.data.code));
+            dispatch(postCreateFailure(err));
         });
     };
 }
@@ -35,15 +39,17 @@ export function postCreate() {
     };
 }
 
-export function postCreateSuccess(){
+export function postCreateSuccess(data){
     return {
-        type: POST_CREATE_SUCCESS
+        type: POST_CREATE_SUCCESS,
+        data
     };
 }
 
-export function postCreateFailure(){
+export function postCreateFailure(err){
     return {
-        type: POST_CREATE_FAILURE
+        type: POST_CREATE_FAILURE,
+        err: err
     };
 }
 
@@ -53,11 +59,15 @@ export function postReadRequest(){
     return (dispatch) => {
         dispatch(postRead());
         
-        return axios.get('/api/post/all')
+        let url = "/api/post/all";
+        console.log("postReadRequest : " + url);
+        
+        return axios.get(url)
         .then((res) => {
-            dispatch(postReadSuccess());
+            dispatch(postReadSuccess(res.data));
+            console.log("postReadResponse" + res);
         }).catch((err) => {
-            dispatch(postReadFailure(err.response.data.code));
+            dispatch(postReadFailure(err));
         });
     };
 }
@@ -68,15 +78,17 @@ export function postRead() {
     };
 }
 
-export function postReadSuccess(){
+export function postReadSuccess(data){
     return {
-        type: POST_READ_SUCCESS
+        type: POST_READ_SUCCESS,
+        data
     };
 }
 
-export function postReadFailure(){
+export function postReadFailure(err){
     return {
-        type: POST_READ_FAILURE
+        type: POST_READ_FAILURE,
+        err: err
     };
 }
 
@@ -87,11 +99,14 @@ export function postUpdateRequest(id, title, content){
     return (dispatch) => {
         dispatch(postUpdate());
         
+        let url = "/api/post/update";
+        console.log("postUpdateRequest : " + url + "//" + id + "//" + title + "//" + content);
+        
         return axios.post('/api/post/update', {id, title, content})
         .then((res) => {
-            dispatch(postUpdateSuccess());
+            dispatch(postUpdateSuccess(res.data));
         }).catch((err) => {
-            dispatch(postUpdateFailure(err.response.data.code));
+            dispatch(postUpdateFailure(err));
         });
     };
 }
@@ -102,15 +117,17 @@ export function postUpdate() {
     };
 }
 
-export function postUpdateSuccess(){
+export function postUpdateSuccess(data){
     return {
-        type: POST_UPDATE_SUCCESS
+        type: POST_UPDATE_SUCCESS,
+        data
     };
 }
 
-export function postUpdateFailure(){
+export function postUpdateFailure(err){
     return {
-        type: POST_UPDATE_FAILURE
+        type: POST_UPDATE_FAILURE,
+        err: err
     };
 }
 
@@ -121,11 +138,14 @@ export function postDeleteRequest(id){
     return (dispatch) => {
         dispatch(postDelete());
         
+        let url = "/api/post/delete";
+        console.log("postDeleteRequest : " + url + "//" + id);
+        
         return axios.post('/api/post/delete', {id})
         .then((res) => {
-            dispatch(postDeleteSuccess());
+            dispatch(postDeleteSuccess(res.data));
         }).catch((err) => {
-            dispatch(postDeleteFailure(err.response.data.code));
+            dispatch(postDeleteFailure(err));
         });
     };
 }
@@ -136,15 +156,17 @@ export function postDelete() {
     };
 }
 
-export function postDeleteSuccess(){
+export function postDeleteSuccess(data){
     return {
-        type: POST_DELETE_SUCCESS
+        type: POST_DELETE_SUCCESS,
+        data
     };
 }
 
-export function postDeleteFailure(){
+export function postDeleteFailure(err){
     return {
-        type: POST_DELETE_FAILURE
+        type: POST_DELETE_FAILURE,
+        err: err
     };
 }
 

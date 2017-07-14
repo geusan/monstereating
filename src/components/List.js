@@ -11,24 +11,16 @@ class List extends React.Component {
             deleteMethod={this.props.deleteMethod}
             updateMethod={this.props.updateMethod}
             field={item} 
-            key={"item-" + i} 
-            unmountMe={this.handleRemove} />
+            index={i}
+            />
         );
     }
-    
-    handleRemove(){
-        this.setState({
-            renderChild: false
-        });
-    }
-    
-    
     
     render() {
         const postArr = this.showPost(this.props.posts);
         
         return (
-            <div>
+            <div className="row">
                 {postArr}
                 <Write onPost={this.props.createMethod}/>
             </div>
@@ -41,14 +33,13 @@ List.propTypes = {
     createMethod: React.PropTypes.func,
     updateMethod: React.PropTypes.func,
     deleteMethod: React.PropTypes.func
-    
 }
 
 List.defaultProps = {
     posts: [],
-    createMethod: () => { console.log("createMethod is not defined")},
-    updateMethod: () => { console.log("updateMethod is not defined")},
-    deleteMethod: () => { console.log("deleteMethod is not defined")}
+    createMethod: (title, content) => { console.log("createMethod is not defined")},
+    updateMethod: (id, title, content) => { console.log("updateMethod is not defined")},
+    deleteMethod: (id) => { console.log("deleteMethod is not defined")}
 }
 
 
