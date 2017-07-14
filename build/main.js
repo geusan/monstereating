@@ -53,7 +53,7 @@ db.once('open', function () {
     console.log('Connected to mongodb server');
 });
 _mongoose2.default.connect('mongodb://localhost/monster'); //monster 데이터베이스로 연결
-var port = 8081;
+var port = 8080;
 var devPort = 8082;
 
 // html logger and bodyparser use

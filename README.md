@@ -1,12 +1,13 @@
 # 괴식닷컴 MERN(MongoDB + Express + React + NodsJS)
-C9(Ubuntu 16.04 기준) - 
+C9(Ubuntu 16.04 기준) - C9.io 에서 blank project를 생성한 후에 시작하자
 
 ## 기본설명
 웹애플리케이션을 빠르게 구축할 수 있는 프레임워크 스택을 말한다.  구성은 아래와 같이 사용하게된다.
 - frontend : ReactJS
 - backend(server) : NodeJS + Express
 - database : MongoDB
-각 기본설명이 적혀 있고, 설치방법이 적혀있는데 아래쪽에서 한번에 다하자
+
+각 기본설명이 적혀 있고, 설치방법이 적혀있는데 아래쪽에 이것만 하면 된다가 있으니, 맨아래로 이동하자
 
 
 ### 0. git : repository 버젼관리 시스템
@@ -84,11 +85,21 @@ C9(Ubuntu 16.04 기준) -
 ## 여기부터 진짜
     0. 이것만 따라하면 된다.
     
+    # node 버젼업
+    sudo node npm cache clean -f
+    sudo npm install -g n
+    sudo n stable
+    
+    # npm 버젼업
+    sudo npm i -g npm
+    
+    # 필요파일 다운로드
     git clone https://github.com/geusan/monstereating.git
     
-    # package.json 설정
+    # package.json을 사용한 개발환경 설치
     sudo npm install
     
+    # package.json 파일 안에 있지만, global install 이 필요하고, 버젼문제로 한번 더 설치
     sudo npm install -g webpack webpack-dev-server
     sudo npm install -g babel-cli nodemon cross-env
     sudo npm install --save express body-parser morgan
@@ -104,20 +115,20 @@ C9(Ubuntu 16.04 기준) -
     npm run build ( server build 와 webpack build 동시에 된다)
     
     # mongodb 서버 실행
-    mkdir data
+    mkdir data # 데이터베이스 저장 경로
     sudo mongod --bind_ip=$IP --dbpath=data --nojournal 
     # 에러가 뜰 경우 data 폴더 삭제 후 재생성 데이터베이스 IO Exception 이다.
     
     # start 하기
     npm run start 
     
+    
     1. 기본적인 거
     package.json 파일로 dependencies 를 관리한다.
     webpack.config.js 는 디플로이 서버 환경
     webpack.dev.config.js 는 개발 서버 환경
     
-    
-    2. src/ 폴더의 components, containers, reducers 폴더에는 index.js 가 꼭 필요하다.
+    2. src/ 폴더의 components, containers, reducers 폴더에는 index.js 가 꼭 필요하다. 그래야 폴더 자체를 
     
     3. 현재 CRUD의 간단한 기능만을 가지고 있다. 맘에드는 기능으로 커스텀하여 사용하면 된다.
     

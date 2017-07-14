@@ -16,7 +16,7 @@ const db = mongoose.connection; // database 연결 인스턴스
 db.on('error', console.error);
 db.once('open', () => {console.log('Connected to mongodb server')});
 mongoose.connect('mongodb://localhost/monster'); //monster 데이터베이스로 연결
-const port = 8081;
+const port = 8080;
 const devPort = 8082;
 
 // html logger and bodyparser use
