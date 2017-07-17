@@ -115,7 +115,7 @@ C9(Ubuntu 16.04 기준) - C9.io 에서 blank project를 생성한 후에 시작�
     # build 하기
     npm run build ( server build 와 webpack build 동시에 된다)
     
-    # mongodb 서버 실행
+    # mongodb 서버 실행(다른 터미널에서 실행)
     mkdir data # 데이터베이스 저장 경로
     sudo mongod --bind_ip=$IP --dbpath=data --nojournal 
     # 에러가 뜰 경우 data 폴더 삭제 후 재생성 데이터베이스 IO Exception 이다.
