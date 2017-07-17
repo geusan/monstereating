@@ -105,7 +105,7 @@ C9(Ubuntu 16.04 기준) - C9.io 에서 blank project를 생성한 후에 시작�
     sudo npm install -g babel-cli nodemon cross-env
     sudo npm install --save express body-parser morgan
     
-    sudo npm apt-get install -y mongodb-org
+    sudo apt-get install -y mongodb-org
     sudo npm install --save mongoose
     
     # webpack 설정
