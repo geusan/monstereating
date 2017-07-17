@@ -1,3 +1,5 @@
+// View에서 발생하는 모든 Action에 대한 응답코드를 정의한다.
+
 // post에 대한 액션
 export const POST_CREATE = "POST_CREATE";
 export const POST_CREATE_SUCCESS = "POST_CREATE_SUCCESS";

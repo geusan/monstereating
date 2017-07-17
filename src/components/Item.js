@@ -1,5 +1,8 @@
 import React from 'react';
 
+
+// List에 들어가는 Item 하나를 만듦
+
 class Item extends React.Component {
     
     constructor(props){

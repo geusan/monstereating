@@ -86,7 +86,7 @@ C9(Ubuntu 16.04 기준) - C9.io 에서 blank project를 생성한 후에 시작�
     0. 이것만 따라하면 된다.
     
     # node 버젼업
-    sudo node npm cache clean -f
+    sudo npm cache clean -f
     sudo npm install -g n
     sudo n stable
     
@@ -95,6 +95,7 @@ C9(Ubuntu 16.04 기준) - C9.io 에서 blank project를 생성한 후에 시작�
     
     # 필요파일 다운로드
     git clone https://github.com/geusan/monstereating.git
+    cd monstereating
     
     # package.json을 사용한 개발환경 설치
     sudo npm install

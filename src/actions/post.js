@@ -1,4 +1,6 @@
+//ActionType 에서 정의해둔 응답코드를 임포트한다.
 import {
+    /* 응답코드 */
     POST_CREATE,
     POST_CREATE_SUCCESS,
     POST_CREATE_FAILURE,
@@ -12,9 +14,11 @@ import {
     POST_DELETE_SUCCESS,
     POST_DELETE_FAILURE
 } from './ActionTypes';
-import axios from 'axios';
+import axios from 'axios'; // AJAX 통신 
 
 
+// 하나의 Action을 발생시키는 것
+// 요청 메소드 안에서, 메소드 실행/성공/실패 를 리턴하는 메소드를 가진다.
 // post create
 export function postCreateRequest(title, content){
     return (dispatch) => {
