@@ -1,13 +1,14 @@
 # 괴식닷컴 MERN(MongoDB + Express + React + NodsJS)
 C9(Ubuntu 16.04 기준) - C9.io 에서 blank project를 생성한 후에 시작하자
 
-## 기본설명
-웹애플리케이션을 빠르게 구축할 수 있는 프레임워크 스택을 말한다.  구성은 아래와 같이 사용하게된다.
+## 기본설명 - 먼스택이 먼가요?
+먼스택이란! 웹애플리케이션을 빠르게 구축할 수 있는 프레임워크 스택을 말한다. 빠르게 찾고 빠르게 삽입 할 수 있는 장점을 가진 오픈소스 NoSQL 데이터베이스인 몽고디비와 가장 빠르게 구성이 가능한 API서버 NodeJS + Express과 
+가상DOM을 사용해서 자동 리프레싱을 쉽게 구현할 수 있는 ReactJS로 구성 되어 있다. 스택 구성은 아래처럼 사용한다.
 - frontend : ReactJS
 - backend(server) : NodeJS + Express
 - database : MongoDB
 
-각 기본설명이 적혀 있고, 설치방법이 적혀있는데 아래쪽에 이것만 하면 된다가 있으니, 맨아래로 이동하자
+사용하려는 기술에 대한 기본설명(+설치방법)이 적혀 있고, 설치방법이 적혀있는데 <span style="background-color:red;font-weight:bold;color:white">아래쪽에 이것만 하면 된다가 있으니, 맨아래로 이동하자</span>
 
 
 ### 0. git : repository 버젼관리 시스템
@@ -27,6 +28,7 @@ C9(Ubuntu 16.04 기준) - C9.io 에서 blank project를 생성한 후에 시작�
     
     # 터미널1
     sudo apt-get install -y mongodb-org  #몽고디비 설치
+    mkdir {데이터베이스 폴더}
     sudo mongod --bind_ip=$IP --dbpath={데이터베이스 폴더} --nojournal # 몽고디비 서버 실행
     # 개발사용이 끝났으면 꼭 끄자
     
@@ -95,7 +97,8 @@ C9(Ubuntu 16.04 기준) - C9.io 에서 blank project를 생성한 후에 시작�
     
     # 필요파일 다운로드
     git clone https://github.com/geusan/monstereating.git
-    cd monstereating
+    cd monstereating # 클론된 폴더로 이동 
+    #내부의 파일들을 상위폴더로 이동시켜도 된다. 그땐 mv monstereating/* . 요렇게 입력
     
     # package.json을 사용한 개발환경 설치
     sudo npm install
@@ -105,24 +108,26 @@ C9(Ubuntu 16.04 기준) - C9.io 에서 blank project를 생성한 후에 시작�
     sudo npm install -g babel-cli nodemon cross-env
     sudo npm install --save express body-parser morgan
     
+    # 몽고디비 설치
     sudo apt-get install -y mongodb-org
     sudo npm install --save mongoose
     
-    # webpack 설정
-    webpack.config.js # 파일 확인
-    webpack.dev.config.js # 파일 확인
+    # mongodb 서버 실행(다른 터미널에서 실행)
+    mkdir data # 데이터베이스 저장 경로 생성 (최초 1회만 실행)
+    sudo mongod --bind_ip=$IP --dbpath=data --nojournal 
+    # 가끔 재시작할 때 에러가 있는데, 안끄고 나가서 그런거다 data 폴더의 mongodb.lock 를 지워주자
     
     # build 하기
     npm run build ( server build 와 webpack build 동시에 된다)
     
-    # mongodb 서버 실행(다른 터미널에서 실행)
-    mkdir data # 데이터베이스 저장 경로
-    sudo mongod --bind_ip=$IP --dbpath=data --nojournal 
-    # 에러가 뜰 경우 data 폴더 삭제 후 재생성 데이터베이스 IO Exception 이다.
+    
     
     # start 하기
     npm run start 
     
+    # 실행된 내 사이트로 들어가기
+    http://{프로젝트 이름}-{아이디}.c9users.io
+    # 중간에 들어가는 '-'을 잘 쓰자(이름에 언더바'_'가 들어가면 자동으로 '-' 으로 변한다)
     
     1. 기본적인 거
     package.json 파일로 dependencies 를 관리한다.
@@ -134,5 +139,16 @@ C9(Ubuntu 16.04 기준) - C9.io 에서 blank project를 생성한 후에 시작�
     
     3. 현재 CRUD의 간단한 기능만을 가지고 있다. 맘에드는 기능으로 커스텀하여 사용하면 된다.
     
-    4. 참조 velopert.com
+    4. 각각의 폴더 내부에도 README.md 가 있으니 설명을 천천히 읽어보자. 사실 이해하기 넘나 힘들다
     
+
+    
+    
+참조 [velopert 블로그](http://velopert.com "velopert")
+
+[README.md : server] (https://github.com/geusan/monstereating/server/README.md)
+
+[README.md : react] (https://github.com/geusan/monstereating/src/README.md)
+
+[README.md : public] (https://github.com/geusan/monstereating/public/README.md)
+
