@@ -35,7 +35,7 @@ C9(Ubuntu 16.04 기준) - C9.io 에서 blank project를 생성한 후에 시작�
     # 터미널2 다른 터미널 열기
     mongo #다른 터미널에서 몽고디비 서버 접속
     
-    # mongodb 커맨드 명령어
+    # 몽고몽고 커맨드 명령어
     >show dbs # database 목록 보기
     >use monster # monster database로 이동
     >db.{model + s (복수형)}.find()  # 찾기 메소드
@@ -48,7 +48,7 @@ C9(Ubuntu 16.04 기준) - C9.io 에서 blank project를 생성한 후에 시작�
 ### 2. nodeJS 설치(c9은 원래 설치되어 있음 버젼업만 하자)
     개발언어다. v8엔진을 기반이라고 하는데, 잘은 모르겠는데, cross-env 에 강력하다고 한다.
     이 말은 어디에서든지 개발이 가능하고, 어디에서든지 실행이 가능하다는 말이다.
-    어떤 플랫폼 상이든 개발이 편하고 빠르게 된다. 퍼포먼스는 JSP에 비하면 떨어지는 데,
+    어떤 플랫폼 상이든 개발이 편하고 빠르게 된다. 퍼포먼스는 다른 언어에 비해 떨어진다고 하는데,
     실시간 채팅이거나 스트리밍 기능이 필요할 때 제외하고는 상관 없을 거라고 생각한다.
     
     # v6 기준 (ubuntu 에 설치 할 때)
@@ -87,10 +87,14 @@ C9(Ubuntu 16.04 기준) - C9.io 에서 blank project를 생성한 후에 시작�
 ## 여기부터 진짜
     0. 이것만 따라하면 된다.
     
-    # node 버젼업
+    # node 버젼업(일반 서버)
     sudo npm cache clean -f
     sudo npm install -g n
     sudo n stable
+    
+    # c9 에서는 node 버젼업이 다름
+    nvm install 6
+    nvm alias default 6
     
     # npm 버젼업
     sudo npm i -g npm
@@ -146,9 +150,9 @@ C9(Ubuntu 16.04 기준) - C9.io 에서 blank project를 생성한 후에 시작�
     
 참조 [velopert 블로그](http://velopert.com "velopert")
 
-[README.md : server] (https://github.com/geusan/monstereating/server/README.md)
+[README.md : server] (https://github.com/geusan/monstereating/tree/master/server/README.md)
 
-[README.md : react] (https://github.com/geusan/monstereating/src/README.md)
+[README.md : react] (https://github.com/geusan/monstereating/tree/master/src/README.md)
 
-[README.md : public] (https://github.com/geusan/monstereating/public/README.md)
+[README.md : public] (https://github.com/geusan/monstereating/tree/master/public/README.md)
 
