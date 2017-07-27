@@ -19,30 +19,23 @@ C9(Ubuntu 16.04 기준) - C9.io 에서 blank project를 생성한 후에 시작�
     그리고 다른 사람이 쓴 코드와 안겹치게 작동하고, 한번에 merge를 하면서 협업이
     더욱 쉽도록 도와준다.
     
-    # 설치방법
-    sudo apt-get install -y git
-    
 ### 1. mongoDB 사용환경 설정
     확장가능성이 좋고(Scalable) , 사용이 간단하며 (NoSQL), 오픈소스인 데이터베이스
     사용법을 금방 익히고 쉽게 사용할 수 있다. 그리고 빠르다.
     
-    # 터미널1
-    sudo apt-get install -y mongodb-org  #몽고디비 설치
-    mkdir {데이터베이스 폴더}
-    sudo mongod --bind_ip=$IP --dbpath={데이터베이스 폴더} --nojournal # 몽고디비 서버 실행
-    # 개발사용이 끝났으면 꼭 끄자
-    
-    # 터미널2 다른 터미널 열기
-    mongo #다른 터미널에서 몽고디비 서버 접속
-    
-    # 몽고몽고 커맨드 명령어
+    # 몽고디비서버 실행
+    $ sudo mongod --bind_ip=$IP --dbpath={저장경로} --nojournal
+    # 몽고디비 접속
+    $ mongo 
+    # 몽고디비 커맨드 명령어(몽고디비서버 실행 후에)
     >show dbs # database 목록 보기
     >use monster # monster database로 이동
-    >db.{model + s (복수형)}.find()  # 찾기 메소드
-    >db.{model + s (복수형)}.save({contents: "newData"}) # contents: "newData" 를 가진 데이터 생성
-    >db.{model + s (복수형)}.update(조건문, {바꿀정보json}) # 수정
-    >db.{model + s (복수형)}.delete(조건문) # 삭제
+    >db.{model 이름}.find()  # 찾기 메소드
+    >db.{model 이름}.save({contents: "newData"}) # contents: "newData" 를 가진 데이터 생성
+    >db.{model 이름}.update(조건문, {바꿀정보json}) # 수정
+    >db.{model 이름}.delete(조건문) # 삭제
     
+    # nodeJS 라이브러리 mongoose 를 이용해서 사용!
     
     
 ### 2. nodeJS 설치(c9은 원래 설치되어 있음 버젼업만 하자)
@@ -51,39 +44,13 @@ C9(Ubuntu 16.04 기준) - C9.io 에서 blank project를 생성한 후에 시작�
     어떤 플랫폼 상이든 개발이 편하고 빠르게 된다. 퍼포먼스는 다른 언어에 비해 떨어진다고 하는데,
     실시간 채팅이거나 스트리밍 기능이 필요할 때 제외하고는 상관 없을 거라고 생각한다.
     
-    # v6 기준 (ubuntu 에 설치 할 때)
-    curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-    sudo apt-get install -y nodejs
-    
-    #버젼업 하기
-    node -v # 버젼확인
-    sudo npm cache clean -f # 캐시 삭제
-    sudo npm install -g n # n 모듈 설치
-    sudo n stable # 안정화
-    
-    # npm 버젼업
-    npm -v # 버젼확인
-    sudo npm install -g npm # 업데이트
-    
-    출처 : https://velopert.com/1351
-    
-    
 ### 3. Express 설치하기(NodeJS 프레임워크)
-    NodeJS에서 서버를 쓰는 프레임워크이다. 그냥 루비와 레일즈 느낌으로 이해하면 된다.
-    
-    # 우리는 package.json 파일로 버젼관리를 합니다만, 방법은 써드림(친절)
-    sudo npm install express
-    
+    NodeJS에서 서버구현 쓰는 프레임워크이다. 그냥 루비와 레일즈 느낌으로 이해하면 된다.
 
 ### 4. ReactJS 설치하기
-    우리가 쓰려는 발암물질 webpack을 사용한다. webpack이 환경변수 설정을 자동화 해주는데, 발암이 틀림없다.
-    온전한 정신건강을 위해 심호흡 5번씩 하고 사용하도록하자
-    # -g : global(시스템에 설치) --save : local (프로젝트에만 설치)
-    sudo npm install -g webpack webpack-dev-server # Webpack 설치
-    sudo npm install -g react react-dom redux # ReactJS 설치 
+    우리가 쓰려는 발암물질 webpack을 사용한다. webpack이 환경변수 설정을 자동화 해주는데, 
+    발암이 틀림없다. 온전한 정신건강을 위해 심호흡 5번씩 하고 사용하도록하자
     
-    
-
 ## 여기부터 진짜
     0. 이것만 따라하면 된다.
     
