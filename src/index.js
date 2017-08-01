@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
-import { App, Home, Login, Register } from 'containers';
+import { App, Home, Food } from 'containers';
 
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
@@ -15,10 +15,9 @@ ReactDOM.render(
     <Provider store={store}>
         <Router history={browserHistory}>
             <Route path="/" component={App}>
-                <IndexRoute component={Home}/>
+                <IndexRoute component={Food}/>
                 <Route path="home" component={Home}/>
-                <Route path="login" component={Login}/>
-                <Route path="register" component={Register}/>
+                <Route path="food" component={Food}/>
             </Route>
         </Router>
     </Provider>, rootElement);

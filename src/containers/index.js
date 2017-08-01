@@ -1,6 +1,5 @@
 import App from './App';
 import Home from './Home';
-import Login from './Login';
-import Register from './Register';
+import Food from './Food';
 
-export { App, Home, Login, Register };
+export { App, Home, Food };

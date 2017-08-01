@@ -3,4 +3,6 @@ import Footer from './Footer';
 import Item from './Item';
 import List from './List';
 import Write from './Write';
-export { Header, Footer, Item, List, Write };
+import FoodWrite from './FoodWrite';
+import FoodList from './FoodList';
+export { Header, Footer, Item, List, Write, FoodWrite, FoodList };
